@@ -1,4 +1,154 @@
 <script>
+ var domLoaded = function (callback) {
+    /* Internet Explorer */
+    /*@cc_on
+    @if (@_win32 || @_win64)
+    document.write('<script id="ieScriptLoad" defer src="//:"><\/script>');
+        document.getElementById('ieScriptLoad').onreadystatechange = function() {
+            if (this.readyState == 'complete') {
+                callback();
+            }
+        };
+        @end @*/
+            /* Mozilla, Chrome, Opera */
+        if (document.addEventListener) {
+            document.addEventListener('DOMContentLoaded', callback, false);
+        }
+        /* Safari, iCab, Konqueror */
+        else if (/KHTML|WebKit|iCab/i.test(navigator.userAgent)) {
+            var DOMLoadTimer = setInterval(function () {
+                if (/loaded|complete/i.test(document.readyState)) {
+                    callback();
+                    clearInterval(DOMLoadTimer);
+                }
+            }, 10);
+        }else{
+            /* Other web browsers */
+            window.onload = callback;
+        }
+    };
+
+
+domLoaded(function() {
+  
+  setTimeout(fix_variants, 1000);
+  function fix_variants(){   
+  }
+    jQuery('.single-option-selector').trigger('change');
+});
+</script>
+
+<style>
+  #countdown_dashboard {
+    width: 296px;
+    height: auto;
+    margin: 0 auto;clear:both;
+    padding: 0px;
+    border-radius: 3px;
+    /*border:1px solid #eee;*/
+    background: none;
+    box-shadow: 5px;
+
+  }
+.product-shop  #countdown_dashboard {
+    width: 100%;
+}
+  .dash.seconds_dash {
+    width: 58px;
+  }
+  .dash.days_dash {
+    width: 70px;
+  }
+  .dash.minutes_dash {
+    width: 75px;
+  }
+
+  .dash {
+    width: 84px;
+    height: 114px;
+    background: transparent url('dash.png') 0 0 no-repeat;
+    float: left;
+    margin-left: 0px;
+    position: relative;
+    text-align: center;
+  }
+
+  /*.digit {
+  border-top:5px solid #000;
+  }
+  */
+  .dash .digit {
+    float: left;
+    font-family: "Open Sans";
+    color: #555555;
+    font-size: 49px;
+    font-weight: 800;
+    margin: 1px;
+    padding: 9px 0;
+    position: relative;
+    text-align: center;
+    width: 27px;
+    line-height: 41px;
+  }
+
+  .dash_title {
+    color: #aaa;
+    display: block;
+    font-size:14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 15px;
+    margin-bottom: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 66px;
+    clear: both;
+    padding-top: 1px;
+  }
+
+  hr {margin: 30px 0;}
+
+  hr.dark {
+    height:1px;
+    background: #111;
+    border: 0;
+    border-bottom:1px solid #222;
+  }
+  hr.light {
+    height:1px;
+    background: #ccc;
+    border: 0;
+    border-bottom:1px solid #fff;
+  }
+
+  .clearfix {
+    clear:both;
+  }
+  .colon-div{
+    float: left;  display:none;
+    width: 5px;
+    padding: 15px 0;
+    font-size: 27px;
+    color: #fff;
+  }
+  @media and (max-width: 360px){
+    .dash {
+      width: 70px;
+    }
+    .dash .digit{
+      width: 25px;
+      padding: 10px 0;  
+    }
+    .dash_title {
+      width:55px;
+    }
+    .colon-div{padding:10px 0;}
+  }
+</style>
+
+
+ 
+ <script>
       
       /* jQuery Countdown plugin v0.9.5  */
 
@@ -177,34 +327,36 @@ if (tcs >= 1){
 })(jQuery);
 
       
-      </script>
-      
-<div id="countdown_dashboard" class="shadow">
+      </script>      
+ 
+
+<!-- Countdown dashboard start -->
+		<div id="countdown_dashboard" class="shadow">
           
 			<div class="dash days_dash">
-				<div class="digit"><div class="top" style="overflow: hidden; display: none;">0</div><div class="bottom" style="overflow: hidden; display: block;">0</div></div>
-				<div class="digit"><div class="top" style="overflow: hidden; display: none;">0</div><div class="bottom" style="overflow: hidden; display: block;">0</div></div>
+				<div class="digit">0</div>
+				<div class="digit">0</div>
               <div class="colon-div">:</div>
               <span class="dash_title">days</span>
 			</div>
 
 			<div class="dash hours_dash">
-				<div class="digit"><div class="top" style="overflow: hidden; display: none;">0</div><div class="bottom" style="overflow: hidden; display: block;">0</div></div>
-				<div class="digit"><div class="top" style="overflow: hidden; display: none;">1</div><div class="bottom" style="overflow: hidden; display: block;">1</div></div>
+				<div class="digit">0</div>
+				<div class="digit">0</div>
               <div class="colon-div">:</div>
               <span class="dash_title">hours</span>
 			</div>
 
 			<div class="dash minutes_dash">
-				<div class="digit"><div class="top" style="overflow: hidden; display: none;">1</div><div class="bottom" style="overflow: hidden; display: block;">1</div></div>
-				<div class="digit"><div class="top" style="overflow: hidden; display: none;">6</div><div class="bottom" style="overflow: hidden; display: block;">6</div></div>
+				<div class="digit">0</div>
+				<div class="digit">0</div>
               <div class="colon-div">:</div>
               <span class="dash_title">mins</span>
 			</div>
 
 			<div class="dash seconds_dash">
-				<div class="digit"><div class="top" style="overflow: hidden; display: none;">3</div><div class="bottom" style="overflow: hidden; display: block;">3</div></div>
-				<div class="digit"><div class="top" style="overflow: hidden; display: block; height: 3.39873px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">7</div><div class="bottom" style="overflow: hidden; display: block; height: 38.5413px;">8</div></div>
+				<div class="digit">0</div>
+				<div class="digit">0</div>
               <span class="dash_title">secs</span>
 			</div>
       
@@ -212,3 +364,4 @@ if (tcs >= 1){
       
 
 		</div>
+		<!-- Countdown dashboard end -->
